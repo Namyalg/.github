@@ -34,9 +34,25 @@ async function validateYmlSchema(filename){
         catch(err){
             console.log("The workflow in " + filename + " has an invalid schema");
             console.log(err);
+            core.setFailed(`Action failed with error ${err}`);
         }
     }
 }
 
 var arguments = process.argv;
 validateYmlSchema(arguments[2]);
+
+
+
+/*
+
+const core = require('@actions/core');
+
+try {
+  // Do stuff
+}
+catch (err) {
+  // setFailed logs the message and sets a failing exit code
+  core.setFailed(`Action failed with error ${err}`);
+}
+*/
