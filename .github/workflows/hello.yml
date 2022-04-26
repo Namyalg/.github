@@ -6,3 +6,6 @@ jobs:
     steps:
       - name: my-step-to-workflow
         run: echo "Hello World!"
+  
+      - name: what-action-is-this
+        run: echo "Bye world"
