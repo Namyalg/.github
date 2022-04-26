@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
     name: Test changed-files
     steps:
-      - uses: actions/github-script@v4
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
 
@@ -20,10 +20,17 @@ jobs:
         uses: tj-actions/changed-files@v18.7
 
       - name: Install dependencies
-        run: |
-            npm install ajv@8.11.0
-            npm install axios
-            npm install js-yaml
+        uses: actions/github-script@v4
+        with:
+          script: |
+              const Ajv = require('ajv');
+              const axios = require('axios');
+              const yaml = require('js-yaml');
+              const fs = require('fs').promises;
+#         run: |
+#             npm install ajv@8.11.0
+#             npm install axios
+#             npm install js-yaml
             
       - name: Identify changed yml files # Identifies files added, modified, copied or renamed
         run: |
