@@ -2,7 +2,7 @@ name: Validate Workflow Schema
 
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     branches:
       - master
 
@@ -23,10 +23,9 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-              const Ajv = require('ajv');
-              const axios = require('axios');
-              const yaml = require('js-yaml');
-              const fs = require('fs').promises;
+            for (file of ${{ steps.changed-files.outputs.all_changed_files }}){
+              console.log(file);
+            }
 #         run: |
 #             npm install ajv@8.11.0
 #             npm install axios
