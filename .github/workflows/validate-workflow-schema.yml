@@ -23,9 +23,8 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            for (file of ${{ steps.changed-files.outputs.all_changed_files }}){
-              console.log(file);
-            }
+            console.log(${{ steps.changed-files.outputs.all_changed_files }});
+            console.log(typeof(${{ steps.changed-files.outputs.all_changed_files }}));
 #         run: |
 #             npm install ajv@8.11.0
 #             npm install axios
