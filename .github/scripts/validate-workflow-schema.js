@@ -1,3 +1,4 @@
+const core = require('@actions/core');
 const Ajv = require('ajv');
 const axios = require('axios');
 const yaml = require('js-yaml');
@@ -8,11 +9,14 @@ function getFileExtension(filename){
 }
 
 async function validateYmlSchema(filename){
-    const fileExtensions = ["yml", "yaml"];
-    if(fileExtensions.includes(getFileExtension(filename)){
+    if(getFileExtension(filename) === 'yml'){
+        const Ajv = require('ajv');
+        const axios = require('axios');
+        const yaml = require('js-yaml');
+        const fs = require('fs').promises;
         console.log("File name " + filename);
         const schema = await axios.get(
-        'https://json.schemastore.org/github-workflow.json'
+        'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
         );
         const file = await fs.readFile(filename, 'utf8');
         try{
