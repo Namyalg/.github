@@ -25,7 +25,7 @@ async function validateYmlSchema(filename){
                 console.error(`Validation failed with the following errors:`);
                 console.log(validator.errors)
             } else {
-                console.log("The workflow in " + filename + " follows the schema");
+                console.log("The workflow in " + filename + " adheres to the schema");
             }
         }
         catch(err){
