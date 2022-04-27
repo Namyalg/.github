@@ -20,7 +20,9 @@ function validateYmlSchema(filename){
         try{
             const target = yaml.load(file);
             const ajv = new Ajv({ strict: false, allErrors: true });
-            const validator = ajv.compile(schema.data);
+            const validator = ajv.compile(schema);
+            //try { validate = ajv.compile(schema); } catch (e) { validate = ajv.compile(schema); }
+            
             const valid = validator(target);
             if (!valid) {
                 console.log("In validator ");
