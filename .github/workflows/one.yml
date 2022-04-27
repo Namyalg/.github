@@ -1,5 +1,5 @@
 
-name: hello-one-yml
+name: pls-work-once
 on: push
 jobs:
   my-job:

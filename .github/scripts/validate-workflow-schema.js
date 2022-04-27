@@ -18,6 +18,7 @@ function validateYmlSchema(filename){
         );
         const file = fs.readFile(filename, 'utf8');
         try{
+            console.log("here in the try block");
             const target = yaml.load(file);
             const ajv = new Ajv({ strict: false, allErrors: true });
             const validator = ajv.compile(schema.data);
@@ -58,6 +59,7 @@ module.exports = (files) => {
         arrayFiles = files
     }
     for(file of arrayFiles){
+        console.log("file is " + file)
         let log = validateYmlSchema(file);
         if(!log['status']){
             allLogs[file] = log['log']
