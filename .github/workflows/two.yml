@@ -1,9 +1,9 @@
 
-name: This works now yipeee
+name: Test yml file
     on: push
 jobs:
     my-job:
     runs-on: ubuntu-latest
    steps:
       - name: my-step
-        run: echo "Hello World, this is two!"
+        runs : echo "Hello World, this is a test yml file"
