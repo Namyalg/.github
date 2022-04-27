@@ -28,12 +28,12 @@ jobs:
             npm install js-yaml
             npm install @actions/core
             
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo $file
-            node .github/scripts/validate-workflow-schema.js $file
-          done
+      # - name: List all changed files
+      #   run: |
+      #     for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+      #       echo $file
+      #       node .github/scripts/validate-workflow-schema.js $file
+      #     done
       
       - name: Use in JS
         uses: actions/github-script@v4
