@@ -64,7 +64,7 @@ module.exports = (files) => {
         }
     }
     
-    if(allLogs.length){
+    if(allLogs.length > 0){
         console.log("All logs are");
         console.log(allLogs);
     
@@ -73,6 +73,8 @@ module.exports = (files) => {
             console.log(allLogs[f]);
         }
         core.error(`There are errors in the workflow files`);
+    } else {
+        console.log("There are no errors");
     }
 }
 
