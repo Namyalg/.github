@@ -15,7 +15,7 @@ function validateYmlSchema(filename){
         // const schema = await axios.get(
         // 'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
         // );
-       const schema = fs.readFileSync('.github/scripts/check.json', {encoding:'utf8', flag:'r'});
+       var schema = fs.readFileSync('.github/scripts/check.json', {encoding:'utf8', flag:'r'});
         console.log("THE TYPE IS " )
         console.log(typeof(schema))
         schema = JSON.parse(schema);
