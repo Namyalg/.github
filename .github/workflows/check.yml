@@ -1,4 +1,4 @@
-name: File open pls
+name: File
 
 on:
   workflow_dispatch:
