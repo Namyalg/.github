@@ -1,6 +1,6 @@
 
-name: changed-two-threee
-on: push
+name: This works now
+    on: push
 jobs:
       my-job:
           runs-on: ubuntu-latest
