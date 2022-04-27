@@ -15,7 +15,7 @@ function validateYmlSchema(filename){
         // const schema = axios.get(
         // 'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
         // );
-        const schema = fs.readFileSync('.github/scripts/check.json')
+        const schema = fs.readFileSync('check.json', {encoding:'utf8', flag:'r'});
         console.log(schema)
         const file = fs.readFileSync(filename, 'utf8');
         try{
