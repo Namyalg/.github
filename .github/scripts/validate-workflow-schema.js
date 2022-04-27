@@ -11,6 +11,8 @@ function getFileExtension(filename){
 function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
+
+        // Read the schema file and workflow file synchronously
         let schema = fs.readFileSync('.github/scripts/yml-schema.json', {encoding:'utf8', flag:'r'});
         schema = JSON.parse(schema);
         const file = fs.readFileSync(filename, 'utf8');
@@ -19,6 +21,7 @@ function validateYmlSchema(filename){
             const ajv = new Ajv({ strict: false, allErrors: true });
             const validator = ajv.compile(schema);
             const valid = validator(target);
+            // Return the status and log for each workflow file validated
             if (!valid) {
                 return {
                     'status' : false,
@@ -27,7 +30,7 @@ function validateYmlSchema(filename){
             } else {
                 return {
                     'status' : true,
-                    'log': "Validation successful"
+                    'log': 'Validation successful'
                 }
             }
         }
@@ -40,23 +43,24 @@ function validateYmlSchema(filename){
     } else {
         return {
             'status' : true,
-            'log': "Not a yml/yaml file"
+            'log': 'Not a yml/yaml file'
         }
     }
 }
 
 module.exports = (files) => {
-    let arrayFiles = {};
+    let allFiles = {};
     const allLogs = {}
-    try{
-        arrayFiles = files.split(" ");
-    }
-    catch(e){
-        arrayFiles = files
-    }
-    for(file of arrayFiles){
+    allFiles = files.split(' ');
+    // try{
+    //     allFiles = files.split(' ');
+    // }
+    // catch(e){
+    //     allFiles = files
+    // }
+    for(file of allFiles){
         let log = validateYmlSchema(file);
-        if(log['status'] == false){
+        if(!log['status']){
             allLogs[file] = log['log']
         }
     }
@@ -66,9 +70,9 @@ module.exports = (files) => {
             console.log(file);
             console.log(allLogs[file]);
         }
-        core.setFailed(`There are errors in the workflow files`);
+        core.setFailed('There are errors in the workflow files');
     } else {
-        console.log("No errors detected in the yml/yaml files");
+        console.log('No errors detected in the yml/yaml files');
     }
 }
 
