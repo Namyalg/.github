@@ -50,12 +50,7 @@ function validateYmlSchema(filename){
 
 module.exports = (allFiles) => {
     const allLogs = {}
-    try{
-        allFiles = allFiles.split(' ');
-    } catch(e){
-        
-    }
-    
+    allFiles = allFiles.split(' ');
     for(file of allFiles){
         let log = validateYmlSchema(file);
         if(!log['status']){

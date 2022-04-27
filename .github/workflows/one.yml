@@ -1,7 +1,7 @@
-name: yml file one
+name: yml-file-one
 jobs:
     my-job:
     runs-on: ubuntu-latest
-   steps:
+  steps:
       - name: test-file 
         runs : echo "Test yml file"

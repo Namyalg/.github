@@ -1,5 +1,5 @@
 
-name: yml file two
+title: yml file two
     on: push
 jobs:
     my-job:
