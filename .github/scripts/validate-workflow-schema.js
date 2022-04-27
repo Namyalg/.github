@@ -18,13 +18,14 @@ function validateYmlSchema(filename){
        const schema = fs.readFileSync('.github/scripts/check.json', {encoding:'utf8', flag:'r'});
         console.log("THE TYPE IS " )
         console.log(typeof(schema))
+        schema = JSON.parse(schema);
         const file = fs.readFileSync(filename, 'utf8');
         try{
             const target = yaml.load(file);
             const ajv = new Ajv({ strict: false, allErrors: true });
-            //const validator = ajv.compile(schema);
-            var validator;
-            try { validator = ajv.compile(schema); } catch (e) { validator = ajv.compile(schema); }
+            const validator = ajv.compile(schema);
+//             var validator;
+//             try { validator = ajv.compile(schema); } catch (e) { validator = ajv.compile(schema); }
             
             const valid = validator(target);
             if (!valid) {
