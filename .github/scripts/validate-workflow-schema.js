@@ -67,7 +67,6 @@ module.exports = (files) => {
     if(Object.keys(allLogs).length > 0){
         for(file in allLogs){
             console.log("ERROR IN FILE " + file)
-            console.log(file);
             console.log(allLogs[file]);
         }
         core.setFailed('There are errors in the workflow files');
