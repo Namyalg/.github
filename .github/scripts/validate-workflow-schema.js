@@ -12,10 +12,10 @@ function getFileExtension(filename){
 function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
-        // const schema = axios.get(
-        // 'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
-        // );
-        const schema = fs.readFileSync('check.json', {encoding:'utf8', flag:'r'});
+        const schema = await axios.get(
+        'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
+        );
+       // const schema = fs.readFileSync('check.json', {encoding:'utf8', flag:'r'});
         console.log(schema)
         const file = fs.readFileSync(filename, 'utf8');
         try{

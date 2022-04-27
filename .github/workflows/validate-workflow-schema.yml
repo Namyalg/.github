@@ -1,4 +1,4 @@
-name: Validate Workflow Again Pls
+name: Validate Workflow Work
 
 on:
   workflow_dispatch:
