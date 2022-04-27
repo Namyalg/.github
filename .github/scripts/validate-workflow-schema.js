@@ -9,11 +9,8 @@ function getFileExtension(filename){
 }
 
 async function validateYmlSchema(filename){
-    if(getFileExtension(filename) === 'yml'){
-        const Ajv = require('ajv');
-        const axios = require('axios');
-        const yaml = require('js-yaml');
-        const fs = require('fs').promises;
+    const fileExtensions = ['yml', 'yaml'];
+    if(fileExtensions.includes(getFileExtension(filename))){
         console.log("File name " + filename);
         const schema = await axios.get(
         'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
@@ -36,13 +33,13 @@ async function validateYmlSchema(filename){
             console.log(err);
             //core.error(`Action failed with error ${err}`);
         }
+    } else {
+        console.log("It is not a yml file");
     }
 }
 
 module.exports = (files) => {
     console.log("In the script")
-    console.log(files)
-    console.log(typeof(files))
     let arrayFiles = {};
     try{
         arrayFiles = files.split(" ");
@@ -52,7 +49,7 @@ module.exports = (files) => {
     }
     
     for(file of arrayFiles){
-        validateYmlSchema(file)
+        validateYmlSchema(file);
     }
 }
 
