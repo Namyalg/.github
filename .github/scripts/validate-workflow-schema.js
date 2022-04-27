@@ -72,8 +72,9 @@ module.exports = (files) => {
     
     console.log("All logs are");
     console.log(allLogs);
+    console.log()
 
-    if(allLogs.length > 0){
+    if(Object.keys(allLogs).length > 0){
         
     
         for(f in allLogs){
