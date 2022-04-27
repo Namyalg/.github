@@ -1,4 +1,4 @@
-name: Validate Workflow Work
+name: Validate Workflow Schema
 
 on:
   workflow_dispatch:

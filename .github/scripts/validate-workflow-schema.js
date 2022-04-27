@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const Ajv = require('ajv');
-const axios = require('axios');
 const yaml = require('js-yaml');
 const fs = require('fs');
 
@@ -12,7 +11,7 @@ function getFileExtension(filename){
 function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
-        let schema = fs.readFileSync('.github/scripts/check.json', {encoding:'utf8', flag:'r'});
+        let schema = fs.readFileSync('.github/scripts/yml-schema.json', {encoding:'utf8', flag:'r'});
         schema = JSON.parse(schema);
         const file = fs.readFileSync(filename, 'utf8');
         try{
@@ -56,16 +55,16 @@ module.exports = (files) => {
         arrayFiles = files
     }
     for(file of arrayFiles){
-        console.log("ERROR IN FILE " + file)
         let log = validateYmlSchema(file);
         if(log['status'] == false){
             allLogs[file] = log['log']
         }
     }
     if(Object.keys(allLogs).length > 0){
-        for(f in allLogs){
-            console.log(f);
-            console.log(allLogs[f]);
+        for(file in allLogs){
+            console.log("ERROR IN FILE " + file)
+            console.log(file);
+            console.log(allLogs[file]);
         }
         core.setFailed(`There are errors in the workflow files`);
     } else {
