@@ -76,7 +76,7 @@ module.exports = (files) => {
         }
         core.error(`There are errors in the workflow files`);
     } else {
-        console.log("There are no errors");
+        console.log("No errors detected in the yml/yaml files");
     }
 }
 
