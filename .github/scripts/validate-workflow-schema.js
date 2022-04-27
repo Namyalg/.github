@@ -45,9 +45,7 @@ validateYmlSchema(arguments[2]);
 
 module.exports = (files) => {
     console.log("In the script")
-    for(file of files){
-        console.log(file)
-    }
+    console.log(typeof(files))
 }
 
 
