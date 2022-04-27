@@ -3,6 +3,7 @@ const Ajv = require('ajv');
 const axios = require('axios');
 const yaml = require('js-yaml');
 const fs = require('fs').promises;
+const allLogs = {}
 
 function getFileExtension(filename){
     return filename.split('.').pop();
@@ -50,7 +51,6 @@ async function validateYmlSchema(filename){
 
 module.exports = (files) => {
     let arrayFiles = {};
-    let allLogs = {};
     try{
         arrayFiles = files.split(" ");
     }
