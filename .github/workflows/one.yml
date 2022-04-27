@@ -6,4 +6,4 @@ jobs:
       runs-on: ubuntu-latest
     steps:
       - name: my-step
-        run: echo "Hello World, this is one!"
+        run: echo "Hello, this is one!"
