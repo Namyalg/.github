@@ -1,4 +1,4 @@
-name: one
+name: one-yaml
 on: pull_request
   jobs:
 my-job:
