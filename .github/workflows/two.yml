@@ -1,5 +1,5 @@
 
-name: hello-world-two
+name: hello-world-two-yml
 on: push
 jobs:
   my-job:

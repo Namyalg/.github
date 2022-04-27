@@ -9,14 +9,14 @@ function getFileExtension(filename){
     return filename.split('.').pop();
 }
 
-async function validateYmlSchema(filename){
+function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
         console.log("File name " + filename);
-        const schema = await axios.get(
+        const schema = axios.get(
         'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
         );
-        const file = await fs.readFile(filename, 'utf8');
+        const file = fs.readFile(filename, 'utf8');
         try{
             const target = yaml.load(file);
             const ajv = new Ajv({ strict: false, allErrors: true });
@@ -48,6 +48,46 @@ async function validateYmlSchema(filename){
         }
     }
 }
+
+// async function validateYmlSchema(filename){
+//     const fileExtensions = ['yml', 'yaml'];
+//     if(fileExtensions.includes(getFileExtension(filename))){
+//         console.log("File name " + filename);
+//         const schema = await axios.get(
+//         'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
+//         );
+//         const file = await fs.readFile(filename, 'utf8');
+//         try{
+//             const target = yaml.load(file);
+//             const ajv = new Ajv({ strict: false, allErrors: true });
+//             const validator = ajv.compile(schema.data);
+//             const valid = validator(target);
+//             if (!valid) {
+//                 return {
+//                     'status' : false,
+//                     'log': "Validation successful"
+//                 }          
+//             } else {
+//                 return {
+//                     'status' : false,
+//                     'log': validator.errors
+//                 }
+//             }
+//         }
+//         catch(err){
+//             return {
+//                 'status' : false,
+//                 'log': err
+//             }
+//             //core.error(`Action failed with error ${err}`);
+//         }
+//     } else {
+//         return {
+//             'status' : true,
+//             'log': "Not a yml/yaml file"
+//         }
+//     }
+// }
 
 module.exports = (files) => {
     let arrayFiles = {};
