@@ -1,6 +1,6 @@
 name: two-yaml
 on: pull_request
-  jobs:
+jobs:
 my-job:
     runs-on: ubuntu-latest
         steps:
