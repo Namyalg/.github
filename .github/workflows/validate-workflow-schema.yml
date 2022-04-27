@@ -27,7 +27,7 @@ jobs:
             npm install @actions/core
             
       - name: Run script to validate schema
-        uses: actions/github-script@v4
+        uses: actions/github-script@v6
         with:
           script: |
             let files = `${{ steps.changed-files.outputs.all_changed_files }}`
