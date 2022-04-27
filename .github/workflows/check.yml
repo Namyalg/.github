@@ -10,6 +10,6 @@ jobs:
     steps:      
       - name: Identify changed yml files # Identifies files added, modified, copied or renamed
         run: |
-            node .github/scripts/test.js
+            ls .github/scripts
         
           
