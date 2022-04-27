@@ -11,5 +11,7 @@ jobs:
       - name: Identify changed yml files # Identifies files added, modified, copied or renamed
         run: |
             pwd
+            cd scripts
+            ls
         
           
