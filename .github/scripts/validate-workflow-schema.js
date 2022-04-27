@@ -64,6 +64,7 @@ module.exports = (files) => {
             allLogs[file] = log['log']
         }
     }
+    console.log("All logs are");
     console.log(allLogs);
 
     for(f in allLogs){
