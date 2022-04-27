@@ -43,7 +43,7 @@ module.exports = (files) => {
     console.log("In the script")
     console.log(files)
     console.log(typeof(files))
-    const arrayFiles = {};
+    let arrayFiles = {};
     try{
         arrayFiles = files.split(" ");
     }
