@@ -13,7 +13,7 @@ jobs:
         
       - name: PWD
         run: |
-            cd .github
-            ls
+            cd .github/scripts
+            node test.js
         
           
