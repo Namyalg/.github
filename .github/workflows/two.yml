@@ -2,7 +2,7 @@ name: two-yaml
 on: pull_request
 jobs:
 my-job:
-    runson: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: my-step
-        run: echo "Hello World, see you tomorrow!"
+        runssssss: echo "Hello World, see you tomorrow!"
