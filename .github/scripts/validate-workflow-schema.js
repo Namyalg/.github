@@ -22,6 +22,8 @@ function validateYmlSchema(filename){
             const validator = ajv.compile(schema.data);
             const valid = validator(target);
             if (!valid) {
+                console.log("In validator ");
+                console.log(validator.errors)
                 return {
                     'status' : false,
                     'log': validator.errors
@@ -34,6 +36,8 @@ function validateYmlSchema(filename){
             }
         }
         catch(err){
+            console.log("In validator ");
+            console.log(err)
             return {
                 'status' : false,
                 'log': err
