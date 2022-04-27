@@ -1,4 +1,4 @@
-name: one-yaml-test
+name: onel-test
 on: pull_request
 jobs:
 my-job:

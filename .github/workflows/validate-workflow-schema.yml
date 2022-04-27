@@ -45,6 +45,6 @@ jobs:
         id: set-result
         with:
           script: |
-            let files = ${{ steps.changed-files.outputs.all_changed_files }}
-            console.log(String(files))
+            let files = `${{ steps.changed-files.outputs.all_changed_files }}`
+            console.log(files)
          
