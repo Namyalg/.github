@@ -1,4 +1,4 @@
-name: File opens here and there pls work
+name: File open
 
 on:
   workflow_dispatch:
