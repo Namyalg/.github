@@ -48,22 +48,16 @@ function validateYmlSchema(filename){
     }
 }
 
-module.exports = (files) => {
-    let allFiles = {};
+module.exports = (allFiles) => {
     const allLogs = {}
-    allFiles = files.split(' ');
-    // try{
-    //     allFiles = files.split(' ');
-    // }
-    // catch(e){
-    //     allFiles = files
-    // }
+    allFiles = allFiles.split(' ');
     for(file of allFiles){
         let log = validateYmlSchema(file);
         if(!log['status']){
             allLogs[file] = log['log']
         }
     }
+    // Workflow fails if an error is detected in any file
     if(Object.keys(allLogs).length > 0){
         for(file in allLogs){
             console.log("ERROR IN FILE " + file)
