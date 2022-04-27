@@ -22,49 +22,50 @@ async function validateYmlSchema(filename){
             const validator = ajv.compile(schema.data);
             const valid = validator(target);
             if (!valid) {
-                console.error(`Validation failed with the following errors:`);
-                console.log(validator.errors)
+                return {
+                    'status' : false,
+                    'log': "Validation successful"
+                }          
             } else {
-                console.log("The workflow in " + filename + " adheres to the schema");
+                return {
+                    'status' : false,
+                    'log': validator.errors
+                }
             }
         }
         catch(err){
-            console.log("The workflow in " + filename + " has an invalid schema");
-            console.log(err);
+            return {
+                'status' : false,
+                'log': err
+            }
             //core.error(`Action failed with error ${err}`);
         }
     } else {
-        console.log("It is not a yml file");
+        return {
+            'status' : true,
+            'log': "Not a yml/yaml file"
+        }
     }
 }
 
 module.exports = (files) => {
-    console.log("In the script")
     let arrayFiles = {};
+    let allLogs = {};
     try{
         arrayFiles = files.split(" ");
     }
     catch(e){
         arrayFiles = files
     }
-    
     for(file of arrayFiles){
-        validateYmlSchema(file);
+        let log = validateYmlSchema(file);
+        if(!log['status']){
+            allLogs[file] = log['log']
+        }
+    }
+    for(f in allLogs){
+        console.log(f);
+        console.log(allLogs[f]);
     }
 }
-
-
-/*
-
-const core = require('@actions/core');
-
-try {
-  // Do stuff
-}
-catch (err) {
-  // setFailed logs the message and sets a failing exit code
-  core.setFailed(`Action failed with error ${err}`);
-}
-*/
-
 
