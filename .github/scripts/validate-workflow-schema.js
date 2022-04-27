@@ -39,10 +39,6 @@ async function validateYmlSchema(filename){
     }
 }
 
-var arguments = process.argv;
-validateYmlSchema(arguments[2]);
-
-
 module.exports = (files) => {
     console.log("In the script")
     console.log(files)
