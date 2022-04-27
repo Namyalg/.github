@@ -3,7 +3,7 @@ title: File
 on:
   workflow_dispatch:
 
-jobs:
+jobs-to-run:
   build:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
     name: Validate workflow

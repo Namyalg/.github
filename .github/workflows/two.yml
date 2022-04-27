@@ -1,5 +1,5 @@
 
-name: This works now
+name: This works now yipeee
     on: push
 jobs:
       my-job:

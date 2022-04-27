@@ -3,7 +3,7 @@ const Ajv = require('ajv');
 const axios = require('axios');
 const yaml = require('js-yaml');
 const fs = require('fs');
-const allLogs = {}
+
 
 function getFileExtension(filename){
     return filename.split('.').pop();
@@ -12,25 +12,15 @@ function getFileExtension(filename){
 function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
-        // const schema = await axios.get(
-        // 'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
-        // );
-       var schema = fs.readFileSync('.github/scripts/check.json', {encoding:'utf8', flag:'r'});
-        console.log("THE TYPE IS " )
-        console.log(typeof(schema))
+        let schema = fs.readFileSync('.github/scripts/check.json', {encoding:'utf8', flag:'r'});
         schema = JSON.parse(schema);
         const file = fs.readFileSync(filename, 'utf8');
         try{
             const target = yaml.load(file);
             const ajv = new Ajv({ strict: false, allErrors: true });
             const validator = ajv.compile(schema);
-//             var validator;
-//             try { validator = ajv.compile(schema); } catch (e) { validator = ajv.compile(schema); }
-            
             const valid = validator(target);
             if (!valid) {
-                console.log("In validator ");
-                console.log(validator.errors)
                 return {
                     'status' : false,
                     'log': validator.errors
@@ -43,8 +33,6 @@ function validateYmlSchema(filename){
             }
         }
         catch(err){
-            console.log("In validator ");
-            console.log(err)
             return {
                 'status' : false,
                 'log': err
@@ -60,6 +48,7 @@ function validateYmlSchema(filename){
 
 module.exports = (files) => {
     let arrayFiles = {};
+    const allLogs = {}
     try{
         arrayFiles = files.split(" ");
     }
@@ -67,28 +56,12 @@ module.exports = (files) => {
         arrayFiles = files
     }
     for(file of arrayFiles){
-        console.log("file is " + file)
+        console.log("ERROR IN FILE " + file)
         let log = validateYmlSchema(file);
-        console.log("the log got is ")
-        console.log(log)
         if(log['status'] == false){
-            console.log("here")
             allLogs[file] = log['log']
         }
-        // Promise.resolve(log).then(function(log) {
-        //     if(log['status'] == false){
-        //         console.log("here")
-        //         allLogs[file] = log['log']
-        //     }
-        //   }, function(log) {
-        //     // not called
-        //   });
     }
-    
-    // console.log("All logs are");
-    // console.log(allLogs);
-    // console.log(Object.keys(allLogs).length)
-
     if(Object.keys(allLogs).length > 0){
         for(f in allLogs){
             console.log(f);
