@@ -2,7 +2,7 @@
 name: hello-world-two-yml
 on: push
 jobs:
-  my-job:
+      my-job:
     runs-on: ubuntu-latest
      steps:
       - name: my-step

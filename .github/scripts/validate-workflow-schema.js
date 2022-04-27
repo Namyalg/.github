@@ -12,13 +12,11 @@ function getFileExtension(filename){
 function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
-        console.log("File name " + filename);
         const schema = axios.get(
         'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
         );
         const file = fs.readFile(filename, 'utf8');
         try{
-            console.log("here in the try block");
             const target = yaml.load(file);
             const ajv = new Ajv({ strict: false, allErrors: true });
             const validator = ajv.compile(schema.data);
@@ -36,12 +34,10 @@ function validateYmlSchema(filename){
             }
         }
         catch(err){
-            console.log(err)
             return {
                 'status' : false,
                 'log': err
             }
-            //core.error(`Action failed with error ${err}`);
         }
     } else {
         return {
@@ -62,9 +58,6 @@ module.exports = (files) => {
     for(file of arrayFiles){
         console.log("file is " + file)
         let log = validateYmlSchema(file);
-
-        console.log(log);
-
         if(log['status'] == false){
             console.log("here")
             allLogs[file] = log['log']
@@ -73,7 +66,7 @@ module.exports = (files) => {
     
     console.log("All logs are");
     console.log(allLogs);
-    console.log()
+    console.log(Object.keys(allLogs).length)
 
     if(Object.keys(allLogs).length > 0){
         
@@ -82,7 +75,7 @@ module.exports = (files) => {
             console.log(f);
             console.log(allLogs[f]);
         }
-        core.error(`There are errors in the workflow files`);
+        core.setFailed(`There are errors in the workflow files`);
     } else {
         console.log("No errors detected in the yml/yaml files");
     }
