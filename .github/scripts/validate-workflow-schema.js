@@ -26,16 +26,17 @@ function validateYmlSchema(filename){
             if (!valid) {
                 return {
                     'status' : false,
-                    'log': "Validation successful"
+                    'log': validator.errors
                 }          
             } else {
                 return {
-                    'status' : false,
-                    'log': validator.errors
+                    'status' : true,
+                    'log': "Validation successful"
                 }
             }
         }
         catch(err){
+            console.log(err)
             return {
                 'status' : false,
                 'log': err
