@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const Ajv = require('ajv');
 const axios = require('axios');
 const yaml = require('js-yaml');
-const fs = require('fs').promises;
+const fs = require('fs');
 const allLogs = {}
 
 function getFileExtension(filename){
