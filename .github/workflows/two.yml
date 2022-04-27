@@ -3,6 +3,6 @@ on: pull_request
 jobs:
 my-job:
     runs-on: ubuntu-latest
-        steps:
+    steps:
       - name: my-step
         run: echo "Hello World, see you tomorrow!"

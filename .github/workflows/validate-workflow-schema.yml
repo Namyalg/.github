@@ -34,3 +34,9 @@ jobs:
             echo $file
             node .github/scripts/validate-workflow-schema.js $file
           done
+      
+      - name: Use in JS
+        uses: actions/github-script@v4
+        script: |
+          let files = ${{ steps.changed-files.outputs.all_changed_files }}
+          console.log(files)

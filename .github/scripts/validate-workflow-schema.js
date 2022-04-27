@@ -34,7 +34,7 @@ async function validateYmlSchema(filename){
         catch(err){
             console.log("The workflow in " + filename + " has an invalid schema");
             console.log(err);
-            core.setFailed(`Action failed with error ${err}`);
+            core.error(`Action failed with error ${err}`);
         }
     }
 }
