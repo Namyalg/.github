@@ -64,16 +64,14 @@ module.exports = (files) => {
         let log = validateYmlSchema(file);
         console.log("the log got is ")
         console.log(log)
-        Promise.resolve(log).then(function(value) {
-            console.log(value); // "Success"
-          }, function(value) {
+        Promise.resolve(log).then(function(log) {
+            if(log['status'] == false){
+                console.log("here")
+                allLogs[file] = log['log']
+            }
+          }, function(log) {
             // not called
           });
-
-        if(log['status'] == false){
-            console.log("here")
-            allLogs[file] = log['log']
-        }
     }
     
     // console.log("All logs are");
