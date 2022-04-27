@@ -1,8 +1,9 @@
-name: two-yaml
-on: pull_request
+
+name: hello-world-two
+on: push
 jobs:
-my-job:
+  my-job:
     runs-on: ubuntu-latest
     steps:
       - name: my-step
-        runssssss: echo "Hwlloworld this is two"
+        run: echo "Hello World, this is two!"
