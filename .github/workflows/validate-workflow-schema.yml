@@ -48,5 +48,6 @@ jobs:
             let files = `${{ steps.changed-files.outputs.all_changed_files }}`
             console.log(files.split(" "))
             const script = require('.github/scripts/validate-workflow-schema.js');
+            script(files);
             
          

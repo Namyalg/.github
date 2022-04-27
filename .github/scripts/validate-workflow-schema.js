@@ -43,6 +43,11 @@ var arguments = process.argv;
 validateYmlSchema(arguments[2]);
 
 
+module.exports = (files) => {
+    const arrayFiles = files.split(" ")
+    console.log(arrayFiles)
+}
+
 
 /*
 
@@ -56,3 +61,5 @@ catch (err) {
   core.setFailed(`Action failed with error ${err}`);
 }
 */
+
+
