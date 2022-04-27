@@ -61,20 +61,24 @@ module.exports = (files) => {
     }
     for(file of arrayFiles){
         console.log("file is " + file)
-        let log = validateYmlSchema(file);
+        let log = await validateYmlSchema(file);
+        Promise.resolve(log).then(function(value) {
+            console.log(value); // "Success"
+          }, function(value) {
+            // not called
+          });
+          
         if(log['status'] == false){
             console.log("here")
             allLogs[file] = log['log']
         }
     }
     
-    console.log("All logs are");
-    console.log(allLogs);
-    console.log(Object.keys(allLogs).length)
+    // console.log("All logs are");
+    // console.log(allLogs);
+    // console.log(Object.keys(allLogs).length)
 
     if(Object.keys(allLogs).length > 0){
-        
-    
         for(f in allLogs){
             console.log(f);
             console.log(allLogs[f]);
