@@ -1,4 +1,4 @@
-name: two-yaml
+name: two-yaml-test
 on: pull_request
 jobs:
 my-job:

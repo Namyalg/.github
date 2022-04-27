@@ -35,8 +35,16 @@ jobs:
       #       node .github/scripts/validate-workflow-schema.js $file
       #     done
       
-      - name: Use in JS
-        uses: actions/github-script@v4
-        script: |
-          let files = ${{ steps.changed-files.outputs.all_changed_files }}
-          console.log(files)
+      # - name: Use in JS
+      #   uses: actions/github-script@v4
+      #   script: |
+      #     let files = ${{ steps.changed-files.outputs.all_changed_files }}
+      #     console.log(files)
+
+      - uses: actions/github-script@v6
+        id: set-result
+        with:
+          script: |
+            let files = ${{ steps.changed-files.outputs.all_changed_files }}
+            console.log(typeof(files))
+         
