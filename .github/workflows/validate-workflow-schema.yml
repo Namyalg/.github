@@ -1,5 +1,3 @@
-validate-workflow-schema
-
 name: Validate Workflow Schema
 
 on:
