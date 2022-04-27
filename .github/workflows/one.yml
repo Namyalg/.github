@@ -1,4 +1,4 @@
-name: hello-world
+name: ruin-syntax
 on: workflow_dispatch:
               jobs:
 my-job:
