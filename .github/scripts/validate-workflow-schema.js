@@ -63,15 +63,18 @@ module.exports = (files) => {
         let log = validateYmlSchema(file);
 
         console.log(log);
-        
-        if(!log['status']){
+
+        if(log['status'] == false){
+            console.log("here")
             allLogs[file] = log['log']
         }
     }
     
+    console.log("All logs are");
+    console.log(allLogs);
+
     if(allLogs.length > 0){
-        console.log("All logs are");
-        console.log(allLogs);
+        
     
         for(f in allLogs){
             console.log(f);
