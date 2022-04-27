@@ -44,8 +44,10 @@ validateYmlSchema(arguments[2]);
 
 
 module.exports = (files) => {
-    const arrayFiles = files.split(" ")
-    console.log(arrayFiles)
+    console.log("In the script")
+    for(file of files){
+        console.log(file)
+    }
 }
 
 
