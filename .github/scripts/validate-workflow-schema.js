@@ -9,14 +9,13 @@ function getFileExtension(filename){
     return filename.split('.').pop();
 }
 
-async function validateYmlSchema(filename){
+function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
-        const schema = await axios.get(
-        'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
-        );
-       // const schema = fs.readFileSync('check.json', {encoding:'utf8', flag:'r'});
-        console.log(schema)
+        // const schema = await axios.get(
+        // 'https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/github-workflow.json'
+        // );
+       const schema = fs.readFileSync('check.json', {encoding:'utf8', flag:'r'});
         const file = fs.readFileSync(filename, 'utf8');
         try{
             const target = yaml.load(file);

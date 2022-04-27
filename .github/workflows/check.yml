@@ -1,36 +1,15 @@
 name: Old validation time
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
     name: Validate workflow
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # OR "2" -> To retrieve the preceding commit.
-
-      - name: Get changed files
-        id: changed-files
-        uses: tj-actions/changed-files@v18.7
-
-      - name: Install dependencies
-        run: |
-            npm install ajv@8.11.0
-            npm install axios
-            npm install js-yaml
-            npm install @actions/core
-            
+    steps:      
       - name: Identify changed yml files # Identifies files added, modified, copied or renamed
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            node .github/scripts/validate.js $file
-          done
+            node .github/scripts/test.js
+        
           
