@@ -9,7 +9,7 @@ function getFileExtension(filename){
     return filename.split('.').pop();
 }
 
-function validateYmlSchema(filename){
+async function validateYmlSchema(filename){
     const fileExtensions = ['yml', 'yaml'];
     if(fileExtensions.includes(getFileExtension(filename))){
         const schema = await axios.get(
