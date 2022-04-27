@@ -59,10 +59,13 @@ module.exports = (files) => {
     }
     for(file of arrayFiles){
         let log = validateYmlSchema(file);
+        console.log(log);
         if(!log['status']){
             allLogs[file] = log['log']
         }
     }
+    console.log(allLogs);
+
     for(f in allLogs){
         console.log(f);
         console.log(allLogs[f]);
