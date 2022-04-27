@@ -34,7 +34,7 @@ async function validateYmlSchema(filename){
         catch(err){
             console.log("The workflow in " + filename + " has an invalid schema");
             console.log(err);
-            core.error(`Action failed with error ${err}`);
+            //core.error(`Action failed with error ${err}`);
         }
     }
 }
@@ -50,7 +50,10 @@ module.exports = (files) => {
     catch(e){
         arrayFiles = files
     }
-    console.log(arrayFiles)
+    
+    for(file of arrayFiles){
+        validateYmlSchema(file)
+    }
 }
 
 
