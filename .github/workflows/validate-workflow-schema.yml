@@ -1,6 +1,7 @@
 name: GitHub Workflows Schema Validation
 
 on:
+  push:
   pull_request:
     branches:
       - master
