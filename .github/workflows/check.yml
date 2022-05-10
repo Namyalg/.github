@@ -1,7 +1,7 @@
 title: File
 
-on:
-  workflow_dispatch:
+  on:
+                      workflow_dispatch:
 
 jobs-to-run:
   build:
