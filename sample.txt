@@ -1,1 +1,1 @@
-Not a yml file
+Not a yml file should not be picked up
