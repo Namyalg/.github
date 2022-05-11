@@ -2,4 +2,4 @@ This is a sample yml file that does not conform to the required format
 
 name: Sample Error should not be tested
 
-Dont this
+Dont this should not run
